@@ -1,8 +1,29 @@
-import Vue from 'vue'
-import App from './App.vue'
+import IotaPaymentComponent from "./IotaPayment.vue";
+import IotaPaymentModule from './IotaPayment.module.js'
 
-Vue.config.productionTip = false
+import io from 'socket.io-client'
+import VueSocketIO from 'vue-socket.io-extended'
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+export default {
+  install(Vue, options) {
+    if (!options.store) console.log('Please provide a vuex store!!')
+
+    if (!options.url) options.url = 'http://localhost:5000'
+    if (!options.path) options.path = '/iota_payments'
+
+    options.path = options.path + '/socket'
+    Vue.use(
+      VueSocketIO,
+      io(options.url, { path: options.path }),
+      {
+        store: options.store
+      }
+    )
+    Vue.component(VueQrcode.name, VueQrcode);
+    // Let's register our component globally
+    // https://vuejs.org/v2/guide/components-registration.html
+    Vue.component("iota-payment", IotaPaymentComponent);
+    options.store.registerModule('IotaPayment', IotaPaymentModule)
+  }
+}
