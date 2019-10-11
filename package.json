@@ -1,6 +1,6 @@
 {
   "name": "vue-iota-payment",
-  "version": "0.0.16",
+  "version": "0.0.21",
   "private": false,
   "main": "dist/IotaPayment.umd.js",
   "module": "dist/IotaPayment.esm.js",
@@ -17,7 +17,8 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/IotaPayment.min.js"
   },
   "dependencies": {
-    "@chenfengyuan/vue-qrcode": "^1.0.1",
+    "@tangle-frost/iota-qr-lib": "0.0.9",
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "socket.io-client": "^2.3.0",
     "vue": "^2.6.10",

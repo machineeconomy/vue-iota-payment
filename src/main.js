@@ -3,7 +3,6 @@ import IotaPaymentModule from './IotaPayment.module.js'
 
 import io from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io-extended'
-import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 export default {
   install(Vue, options) {
@@ -20,7 +19,6 @@ export default {
         store: options.store
       }
     )
-    Vue.component(VueQrcode.name, VueQrcode);
     // Let's register our component globally
     // https://vuejs.org/v2/guide/components-registration.html
     Vue.component("iota-payment", IotaPaymentComponent);
