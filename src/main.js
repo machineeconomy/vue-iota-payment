@@ -9,7 +9,7 @@ export default {
     if (!options.store) console.log('Please provide a vuex store!!')
 
     if (!options.url) options.url = 'http://localhost:5000'
-    if (!options.path) options.path = '/iota_payments'
+    if (!options.path) options.path = '/'
 
     options.path = options.path + '/socket'
     Vue.use(
