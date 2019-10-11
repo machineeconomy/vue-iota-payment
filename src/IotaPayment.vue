@@ -36,7 +36,7 @@ export default {
       const self = this;
       axios
         .post(
-          `http://localhost:5000/api/pay_with_iota?id=${this.order._id}`,
+          `http://localhost:5000/payments`,
           this.order
         )
         .then(function(response) {
