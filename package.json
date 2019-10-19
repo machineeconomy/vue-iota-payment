@@ -1,6 +1,6 @@
 {
   "name": "vue-iota-payment",
-  "version": "0.0.22",
+  "version": "0.0.24",
   "private": false,
   "main": "dist/IotaPayment.umd.js",
   "module": "dist/IotaPayment.esm.js",
