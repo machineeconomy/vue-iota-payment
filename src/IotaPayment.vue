@@ -17,9 +17,10 @@
 
 <script>
 import axios from "axios";
-import * as QrCode from "@tangle-frost/iota-qr-lib/pkg/iota-qr-lib.js";
+import * as IotaQR from "@tangle-frost/iota-qr-lib/pkg/iota-qr-lib.js";
 
 export default {
+  name: 'IotaPayment',
   data() {
     return {
       data: null,
@@ -36,7 +37,7 @@ export default {
       const self = this;
       axios
         .post(
-          `http://localhost:5000/payments`,
+          this.$payOptons.url + this.$payOptons.path,
           this.order
         )
         .then(function(response) {
@@ -47,13 +48,13 @@ export default {
           self.$socket.client.emit("storeClientInfo", {
             customId: response.data.payment.id
           });
-          const paymentData = QrCode.TrinityPaymentQR.generatePaymentData(
+          const paymentData = IotaQR.TrinityPaymentQR.generatePaymentData(
             response.data.payment.address,
             response.data.payment.value,
             "EINFACHIOTA",
             ""
           );
-          QrCode.TrinityPaymentQR.renderHtml(paymentData, "png", 8).then(
+          IotaQR.TrinityPaymentQR.renderHtml(paymentData, "png", 8).then(
             qrCodeData => {
               self.state = "show_qr_code";
               self.qrCodeData = qrCodeData;

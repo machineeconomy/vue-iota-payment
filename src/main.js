@@ -2,7 +2,7 @@ import IotaPaymentComponent from "./IotaPayment.vue";
 import IotaPaymentModule from './IotaPayment.module.js'
 
 import io from 'socket.io-client'
-import VueSocketIO from 'vue-socket.io-extended'
+import VueSocketIOExt from 'vue-socket.io-extended'
 
 export default {
   install(Vue, options) {
@@ -11,10 +11,13 @@ export default {
     if (!options.url) options.url = 'http://localhost:5000'
     if (!options.path) options.path = ''
 
-    options.path = options.path + '/socket'
+    options.socket_path = options.path + '/socket'
+    
+    Vue.prototype.$payOptons = options
+
     Vue.use(
-      VueSocketIO,
-      io(options.url, { path: options.path }),
+      VueSocketIOExt,
+      io(options.url, { path: options.socket_path }),
       {
         store: options.store
       }
