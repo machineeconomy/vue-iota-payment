@@ -46,7 +46,7 @@ export default {
           self.data = response.data;
           self.pay_with_iota = true;
           self.$socket.client.emit("storeClientInfo", {
-            customId: response.data.payment.id
+            paymentOrPayoutId: response.data.payment.id
           });
           const paymentData = IotaQR.TrinityPaymentQR.generatePaymentData(
             response.data.payment.address,
