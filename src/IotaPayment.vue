@@ -20,7 +20,7 @@ import axios from "axios";
 import * as IotaQR from "@tangle-frost/iota-qr-lib/pkg/iota-qr-lib.js";
 
 export default {
-  name: 'IotaPayment',
+  name: "IotaPayment",
   data() {
     return {
       data: null,
@@ -36,10 +36,7 @@ export default {
     payWithIota() {
       const self = this;
       axios
-        .post(
-          this.$payOptons.url + this.$payOptons.path,
-          this.order
-        )
+        .post(this.$payOptons.url + this.$payOptons.path, this.order)
         .then(function(response) {
           console.log("response");
           console.log(response);
