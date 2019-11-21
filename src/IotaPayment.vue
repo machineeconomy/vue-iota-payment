@@ -40,10 +40,7 @@ export default {
     payWithIota() {
       const self = this;
       axios
-        .post(
-          this.$payOptons.url + this.$payOptons.path,
-          this.order
-        )
+        .post(this.$payOptons.url + this.$payOptons.path, this.order)
         .then(function(response) {
           console.log("response");
           console.log(response);
