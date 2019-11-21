@@ -72,12 +72,6 @@ export default {
           console.log(error);
           self.data.status = "error";
         });
-    },
-    onCopy: function (e) {
-      alert('You just copied: ' + e.text)
-    },
-    onError: function (e) {
-      alert('Failed to copy texts')
     }
   },
   sockets: {
