@@ -10,6 +10,8 @@
         class="btn btn-primary"
         :href="`iota://${data.payment.address}/?amount=${data.payment.value}`"
       >Pay with Trinity</a>
+      <button v-clipboard="data.payment.address">Copy address</button>
+      <a>Amount: {{data.payment.value}} i</a>
     </div>
     <div v-else-if="state === 'transaction_incoming'"></div>
   </span>
@@ -18,9 +20,11 @@
 <script>
 import axios from "axios";
 import * as IotaQR from "@tangle-frost/iota-qr-lib/pkg/iota-qr-lib.js";
+import { clipboard } from 'vue-clipboards';
 
 export default {
-  name: "IotaPayment",
+  name: 'IotaPayment',
+  directives: { clipboard },
   data() {
     return {
       data: null,
@@ -43,7 +47,7 @@ export default {
           self.data = response.data;
           self.pay_with_iota = true;
           self.$socket.client.emit("storeClientInfo", {
-            customId: response.data.payment.id
+            paymentOrPayoutId: response.data.payment.id
           });
           const paymentData = IotaQR.TrinityPaymentQR.generatePaymentData(
             response.data.payment.address,
