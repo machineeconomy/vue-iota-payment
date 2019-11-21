@@ -11,6 +11,7 @@ export default {
     if (!options.url) options.url = 'http://localhost:5000'
     if (!options.path) options.path = ''
 
+    if (!options.api_path) options.api_path = options.path + '/api'
     if (!options.socket_path) options.socket_path = options.path + '/socket'
 
     Vue.prototype.$payOptons = options
