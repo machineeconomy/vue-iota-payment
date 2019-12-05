@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "iota-payment": "0.0.17"
+    "iota-payment": "0.0.17",
+    "vue-clipboards": "^1.3.0"
   }
 }
